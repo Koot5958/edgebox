@@ -24,8 +24,22 @@ if st.session_state.get("shutdown", False):
     st.stop()
 
 st.set_page_config(layout="wide")
-st.title("EdgeBox-Nova LLM")
-st.info(INFO_MSG)
+st.set_page_config(
+    page_title="EdgeBox-Nova LLM",
+    page_icon="web/logo3.png",
+    layout="wide"
+)
+
+col1, col2 = st.columns([1, 8])
+with col1:
+    st.image("web/logo2.png", width=600)
+with col2:
+    st.markdown(
+        "<h1 style='margin-top: 10px;'>EdgeBox-Nova LLM</h1>",
+        unsafe_allow_html=True
+    )
+
+st.sidebar.info(INFO_MSG, width=400)
 
 
 
@@ -44,14 +58,16 @@ with col_rerun:
 
 
 #------- audio capture -------#
-ctx = webrtc_streamer(
-    key="audio",
-    mode=WebRtcMode.SENDONLY,
-    audio_processor_factory=AudioProcessor,
-    media_stream_constraints={"audio": True, "video": False},
-    async_processing=True,
-    audio_receiver_size=128,
-)
+col_audio, _ = st.columns([1, 4])
+with col_audio:
+    ctx = webrtc_streamer(
+        key="audio",
+        mode=WebRtcMode.SENDONLY,
+        audio_processor_factory=AudioProcessor,
+        media_stream_constraints={"audio": True, "video": False},
+        async_processing=True,
+        audio_receiver_size=128,
+    )
 
 
 #------- languages choice -------#

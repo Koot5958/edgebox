@@ -42,7 +42,7 @@ INFO_MSG = """
     This application is currently under active development.  
     While it aims to provide real-time speech transcription and translation, some results may be inaccurate, incomplete, or not fully representative of the original speech.
 
-    Performance and accuracy may vary depending on the language, speaking conditions, and audio quality.  
+    Performance and accuracy may vary depending on the language.  
     At this stage, English and French generally provide the most reliable results.
 
     ---

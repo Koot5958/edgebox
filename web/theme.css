@@ -65,6 +65,11 @@ div[data-baseweb="option"]:hover {
     background-color: rgba(59, 130, 246, 0.18) !important;
 }
 
+/* Sidebar container */
+section[data-testid="stSidebar"] {
+    width: 20% !important;
+}
+
 /* === Streamlit buttons === */
 
 .stButton > button {
