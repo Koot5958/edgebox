@@ -99,7 +99,6 @@ if ctx and ctx.audio_processor:
 
 
     #----- real-time update of transcription and translation -----#
-    has_one_line_transc, has_one_line_transl = True, True
     while threads.running:
 
         volume = ctx.audio_processor.volume if ctx.audio_processor else 0.0
@@ -108,35 +107,27 @@ if ctx and ctx.audio_processor:
         new_line_transl, prev_transl, transl = format_subt(threads.output_transl, prev_transl)
 
         # transcription
-        line_scroll_transc = new_line_transc and not has_one_line_transc
         html_transc = get_html_subt(
             join_text(prev_transc, LANG_AUDIO), 
             join_text(transc, LANG_AUDIO), 
-            line_scroll_transc, 
+            new_line_transc, 
             "transc", 
             "Transcription",
             voice_level=volume,
         )
         transc_box.markdown(html_transc, unsafe_allow_html=True)
 
-        if new_line_transc:
-            has_one_line_transc = False
-
         # translation
-        line_scroll_transl = new_line_transl and not has_one_line_transl
         html_transl = get_html_subt(
             join_text(prev_transl, LANG_TRANSL), 
             join_text(transl, LANG_TRANSL), 
-            line_scroll_transl, 
+            new_line_transl, 
             "transl",
             "Translation",
             voice_level=volume,
         )
         transl_box.markdown(html_transl, unsafe_allow_html=True)
 
-        if new_line_transl:
-            has_one_line_transl = False
-
         # waiting time
-        waiting_time = REFRESH_RATE_SLOW if (line_scroll_transc or line_scroll_transl) else REFRESH_RATE_FAST
+        waiting_time = REFRESH_RATE_SLOW if (new_line_transc or new_line_transl) else REFRESH_RATE_FAST
         time.sleep(waiting_time)
