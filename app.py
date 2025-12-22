@@ -26,6 +26,29 @@ if st.session_state.get("shutdown", False):
 st.set_page_config(layout="wide")
 st.title("EdgeBox-Nova LLM")
 
+st.info(
+    """
+**Development Notice**
+
+This application is currently under active development.  
+While it aims to provide real-time speech transcription and translation, some results may be inaccurate, incomplete, or not fully representative of the original speech.
+
+Performance and accuracy may vary depending on the language, speaking conditions, and audio quality.  
+At this stage, English and French generally provide the most reliable results.
+
+---
+
+**개발 중 안내**
+
+본 애플리케이션은 현재 개발 중인 서비스입니다.  
+실시간 음성 인식 및 번역을 제공하지만, 일부 결과는 부정확하거나 불완전할 수 있습니다.
+
+언어, 발화 환경 및 오디오 품질에 따라 정확도가 달라질 수 있으며,  
+현재 영어와 프랑스어가 가장 안정적인 결과를 제공합니다.
+"""
+)
+
+
 
 #------- Rerun and stop buttons -------#
 col_close, col_rerun, _ = st.columns([1, 1, 8])
