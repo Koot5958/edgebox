@@ -49,7 +49,7 @@ def get_html_subt(prev_subt, subt, line_scroll, subt_type, subt_name, voice_leve
     html = html.replace("{{ANIM_DURATION}}", str(REFRESH_RATE_SLOW))
     html = html.replace("{{VOICE_LEVEL}}", f"{voice_level:.2f}")
     html = html.replace("{{ANIMATE_CLASS}}", "animate" if line_scroll else "")
-    html = html.replace("{{PREV_SUBT}}", prev_subt if len(prev_subt) > 0 else "—")
-    html = html.replace("{{SUBT}}", subt if len(subt) > 0 else "—")
+    html = html.replace("{{PREV_SUBT}}", prev_subt if len(prev_subt) > 0 else "▪▪▪")
+    html = html.replace("{{SUBT}}", subt if len(subt) > 0 else "▪▪▪")
 
     return sanitize_html(html)

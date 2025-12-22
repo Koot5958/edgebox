@@ -3,7 +3,7 @@ import time
 import streamlit as st
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
 
-from utils.parameters import DEFAULT_AUDIO_LANG, DEFAULT_TRANS_LANG, REFRESH_RATE_FAST, REFRESH_RATE_SLOW
+from utils.parameters import DEFAULT_AUDIO_LANG, DEFAULT_TRANS_LANG, REFRESH_RATE_FAST, REFRESH_RATE_SLOW, SHUTDOWN_MSG, INFO_MSG
 from utils.lang_list import LANGUAGE_CODES
 from web.display import get_html_subt, format_subt, join_text
 from utils.streamlit_utils import shutdown_app
@@ -20,33 +20,12 @@ load_css("web/theme.css")
 
 if st.session_state.get("shutdown", False):
     print_logs_threads("Threads after executing stop_all_threads (close app)")
-    st.write("App closed. Press Ctrl+C in the terminal.")
+    st.warning(SHUTDOWN_MSG)
     st.stop()
 
 st.set_page_config(layout="wide")
 st.title("EdgeBox-Nova LLM")
-
-st.info(
-    """
-**Development Notice**
-
-This application is currently under active development.  
-While it aims to provide real-time speech transcription and translation, some results may be inaccurate, incomplete, or not fully representative of the original speech.
-
-Performance and accuracy may vary depending on the language, speaking conditions, and audio quality.  
-At this stage, English and French generally provide the most reliable results.
-
----
-
-**개발 중 안내**
-
-본 애플리케이션은 현재 개발 중인 서비스입니다.  
-실시간 음성 인식 및 번역을 제공하지만, 일부 결과는 부정확하거나 불완전할 수 있습니다.
-
-언어, 발화 환경 및 오디오 품질에 따라 정확도가 달라질 수 있으며,  
-현재 영어와 프랑스어가 가장 안정적인 결과를 제공합니다.
-"""
-)
+st.info(INFO_MSG)
 
 
 
