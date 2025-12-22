@@ -12,7 +12,6 @@ from thread_manager import ThreadManager, stop_all_threads
 from microphone_stream import AudioProcessor
 
 
-
 def load_css(path: str):
     with open(path, "r", encoding="utf-8") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
@@ -56,17 +55,21 @@ ctx = webrtc_streamer(
 #------- languages choice -------#
 lang_keys = list(LANGUAGE_CODES.keys())
 if "lang_audio" not in st.session_state:
-    st.session_state.setdefault("lang_audio", DEFAULT_AUDIO_LANG)
+    st.session_state["lang_audio"] = DEFAULT_AUDIO_LANG
 if "lang_transl" not in st.session_state:
-    st.session_state.setdefault("lang_transl", DEFAULT_TRANS_LANG)
+    st.session_state["lang_transl"] = DEFAULT_TRANS_LANG
+
 col_transc, col_transl = st.columns(2, gap="large")
 with col_transc:
-    lang_audio = st.selectbox("Audio language", lang_keys, key="lang_audio")
+    lang_audio_ui = st.selectbox("Audio language", lang_keys, key="lang_audio_ui", index=lang_keys.index(st.session_state.lang_audio))
 with col_transl:
-    lang_transl = st.selectbox("Translation language", lang_keys, key="lang_transl")
+    lang_transl_ui = st.selectbox("Translation language", lang_keys, key="lang_transl_ui", index=lang_keys.index(st.session_state.lang_transl))
 
-LANG_AUDIO = LANGUAGE_CODES[lang_audio]
-LANG_TRANSL = LANGUAGE_CODES[lang_transl]
+st.session_state.lang_audio = lang_audio_ui
+st.session_state.lang_transl = lang_transl_ui
+
+LANG_AUDIO = LANGUAGE_CODES[lang_audio_ui]
+LANG_TRANSL = LANGUAGE_CODES[lang_transl_ui]
 
 
 #------- transcription and translation display initialization -------#
