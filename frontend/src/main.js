@@ -173,6 +173,8 @@ function getSelectedLanguages() {
 // START
 // =====================
 async function start() {
+    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
     startBtn.disabled = true;
     stopBtn.disabled = false;
     langAudioBtn.disabled = true;
@@ -206,7 +208,6 @@ async function start() {
         if (msg.type === "voice") updateVoice(msg.level);
     };
 
-    stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     stream.getTracks().forEach(track => pc.addTrack(track, stream));
 
     const offer = await pc.createOffer();
