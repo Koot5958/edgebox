@@ -1,0 +1,237 @@
+/* -------- Main container -------- */
+
+.content-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin: 2rem;
+
+    background: linear-gradient(
+        135deg,
+        #0b1224,
+        #050914
+    );
+
+    padding: 22px;
+
+    border: 1px solid rgba(42, 145, 204, 0.219);
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px rgba(148, 163, 184, 0.12);
+}
+
+/* -------- Title -------- */
+
+.img-container h2 {
+    color: #e5e7eb;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+}
+
+/* -------- Transcription box -------- */
+
+.trans-box {
+    max-width: 90%;
+    margin: auto;
+    margin-left: 150px;
+    padding: 10px;
+
+    font-size: 17px;
+    line-height: 1.4;
+    text-align: center;
+
+    position: relative;
+    bottom: 230px;
+}
+
+/* -------- Line spacing -------- */
+
+.space-line-transc,
+.space-line-transl {
+    height: 0;
+}
+
+.space-line-transc.animate,
+.space-line-transl.animate {
+    animation: shrinkSpace var(--anim-duration) ease-out forwards;
+}
+
+@keyframes shrinkSpace {
+    0% { 
+        height: calc(17px * 1.4); 
+    }
+    100% { 
+        height: 0; 
+    }
+}
+
+/* -------- Subtitle lines -------- */
+
+.subt-line {
+    display: block;
+    text-align: left;
+}
+
+/* -------- Glass subtitle -------- */
+
+.subt-glass {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 10px;
+
+    background: rgba(11, 18, 36, 0.4);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    border: 1px solid rgba(148, 163, 184, 0.16);
+
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/* -------- Subtitle text -------- */
+
+.subt-glass span {
+    color: #e5e7eb;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+}
+
+.select-trigger {
+    background: linear-gradient(90deg, #0885C9, #36B3F7);
+
+    position: relative;
+    overflow: hidden;
+
+    padding: 10px 22px;
+    padding-right: 5em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+
+    outline: none;
+    z-index: 0;
+}
+
+.select-trigger::after {
+    content: "▾";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.select-trigger:not(:disabled)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+
+    animation: gradientMove 1s ease infinite;
+
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    z-index: -1;
+
+    background: linear-gradient(90deg, #36B3F7, #0885C9);
+}
+
+.select-trigger:not(:disabled):hover::before,
+.select-trigger:not(:disabled):focus-visible::before {
+    opacity: 1;
+}
+
+@keyframes gradientMove {
+    0%   { background-position:   0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position:   0% 50%; }
+}
+
+/* menu déroulant */
+.select {
+    position: relative;
+    display: inline-block;
+}
+
+.select-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+
+    max-height: 220px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 6px 0;
+    margin: 0;
+
+    list-style: none;
+
+    background: #0f172a;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+
+    opacity: 0;
+    transform: translateY(-6px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+    z-index: 20;
+}
+
+/* Menu ouvert */
+.select.open .select-menu {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.select-menu li {
+    padding: 8px 14px;
+    cursor: pointer;
+    color: #e6f0ff;
+    font-size: 14px;
+}
+
+.select-menu li:hover {
+    background: rgba(56, 178, 248, 0.2);
+}
+
+/* disabled */
+.select-trigger:disabled {
+    background: #334155;
+    color: #94a3b8;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* empêcher l'ouverture */
+.select-trigger:disabled + .select-menu {
+    display: none;
+}

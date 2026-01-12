@@ -1,7 +1,7 @@
 import streamlit as st
 
 from .logs import print_logs
-from thread_manager import stop_all_threads
+from ..thread_manager import stop_all_threads
 
 
 def shutdown_app():

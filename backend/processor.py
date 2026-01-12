@@ -1,13 +1,11 @@
 import numpy as np
 import queue
-
-from streamlit_webrtc import AudioProcessorBase
 from scipy.signal import resample_poly
 
 from utils.parameters import SR, CHUNK
 
 
-class AudioProcessor(AudioProcessorBase):
+class AudioProcessor():
     def __init__(self):
         self.buffer = queue.Queue()
         self._temp_buffer = []
@@ -17,7 +15,7 @@ class AudioProcessor(AudioProcessorBase):
 
         self.volume = 0.0
 
-    def _to_float32(self, data: np.ndarray) -> np.ndarray:
+    def _to_float32(self, data):
         if np.issubdtype(data.dtype, np.integer):
             if data.dtype == np.int16:
                 return data.astype(np.float32) / 32768.0
@@ -25,7 +23,7 @@ class AudioProcessor(AudioProcessorBase):
                 return data.astype(np.float32) / 2147483648.0
         return data.astype(np.float32)
 
-    def _to_mono(self, data, frames) -> np.ndarray:
+    def _to_mono(self, data, frames):
         if frames.layout.name == 'mono':
             return data
         if data.ndim == 2:
@@ -35,17 +33,20 @@ class AudioProcessor(AudioProcessorBase):
             return data.reshape(-1, 2).mean(axis=1)
         return data
 
-    def recv(self, frames):
-        audio = frames.to_ndarray()
-        audio_float = self._to_float32(audio[0])
-        audio_mono = self._to_mono(audio_float, frames).astype(np.float32)
-        audio_mono_16k = resample_poly(audio_mono, up=SR, down=frames.sample_rate)
-        self.fill_buffer(audio_mono_16k)
+    async def process_track(self, track):
+        while self.running:
+            frame = await track.recv()
 
-        rms = np.sqrt(np.mean(audio_mono_16k**2))
-        self.volume = min(rms * 20, 1.0)
+            audio = frame.to_ndarray()
+            audio_float = self._to_float32(audio[0])
+            audio_mono = self._to_mono(audio_float, frame)
+            audio_mono = audio_mono.astype(np.float32)
+            audio_16k = resample_poly(audio_mono, up=SR, down=frame.sample_rate)
 
-        return frames
+            self.fill_buffer(audio_16k)
+
+            rms = np.sqrt(np.mean(audio_16k ** 2))
+            self.volume = min(rms * 20, 1.0)
 
     def fill_buffer(self, audio):
         audio_int16 = (audio * 32767).astype(np.int16)

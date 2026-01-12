@@ -1,0 +1,173 @@
+[
+  { "label": "Afrikaans (South Africa)", "code": "af-ZA" },
+  { "label": "Albanian (Albania)", "code": "sq-AL" },
+  { "label": "Amharic (Ethiopia)", "code": "am-ET" },
+
+  { "label": "Arabic (Algeria)", "code": "ar-DZ" },
+  { "label": "Arabic (Bahrain)", "code": "ar-BH" },
+  { "label": "Arabic (Egypt)", "code": "ar-EG" },
+  { "label": "Arabic (Iraq)", "code": "ar-IQ" },
+  { "label": "Arabic (Israel)", "code": "ar-IL" },
+  { "label": "Arabic (Jordan)", "code": "ar-JO" },
+  { "label": "Arabic (Kuwait)", "code": "ar-KW" },
+  { "label": "Arabic (Lebanon)", "code": "ar-LB" },
+  { "label": "Arabic (Morocco)", "code": "ar-MA" },
+  { "label": "Arabic (Oman)", "code": "ar-OM" },
+  { "label": "Arabic (Qatar)", "code": "ar-QA" },
+  { "label": "Arabic (Saudi Arabia)", "code": "ar-SA" },
+  { "label": "Arabic (State of Palestine)", "code": "ar-PS" },
+  { "label": "Arabic (Syria)", "code": "ar-SY" },
+  { "label": "Arabic (Tunisia)", "code": "ar-TN" },
+  { "label": "Arabic (United Arab Emirates)", "code": "ar-AE" },
+  { "label": "Arabic (Yemen)", "code": "ar-YE" },
+
+  { "label": "Armenian (Armenia)", "code": "hy-AM" },
+  { "label": "Azerbaijani (Azerbaijan)", "code": "az-AZ" },
+  { "label": "Basque (Spain)", "code": "eu-ES" },
+
+  { "label": "Bengali (Bangladesh)", "code": "bn-BD" },
+  { "label": "Bengali (India)", "code": "bn-IN" },
+  { "label": "Bosnian (Bosnia and Herzegovina)", "code": "bs-BA" },
+  { "label": "Bulgarian (Bulgaria)", "code": "bg-BG" },
+  { "label": "Burmese (Myanmar)", "code": "my-MM" },
+
+  { "label": "Catalan (Spain)", "code": "ca-ES" },
+
+  { "label": "Chinese (Cantonese, Hong Kong - Traditional)", "code": "yue-Hant-HK" },
+  { "label": "Chinese (Mandarin, China - Simplified)", "code": "cmn-Hans-CN" },
+  { "label": "Chinese (Mandarin, Taiwan - Traditional)", "code": "cmn-Hant-TW" },
+  { "label": "Chinese (Mandarin, Hong Kong - Simplified)", "code": "cmn-Hans-HK" },
+
+  { "label": "Croatian (Croatia)", "code": "hr-HR" },
+  { "label": "Czech (Czech Republic)", "code": "cs-CZ" },
+  { "label": "Danish (Denmark)", "code": "da-DK" },
+
+  { "label": "Dutch (Belgium)", "code": "nl-BE" },
+  { "label": "Dutch (Netherlands)", "code": "nl-NL" },
+
+  { "label": "English (Australia)", "code": "en-AU" },
+  { "label": "English (Canada)", "code": "en-CA" },
+  { "label": "English (Ghana)", "code": "en-GH" },
+  { "label": "English (Hong Kong)", "code": "en-HK" },
+  { "label": "English (India)", "code": "en-IN" },
+  { "label": "English (Ireland)", "code": "en-IE" },
+  { "label": "English (Kenya)", "code": "en-KE" },
+  { "label": "English (New Zealand)", "code": "en-NZ" },
+  { "label": "English (Nigeria)", "code": "en-NG" },
+  { "label": "English (Pakistan)", "code": "en-PK" },
+  { "label": "English (Philippines)", "code": "en-PH" },
+  { "label": "English (Singapore)", "code": "en-SG" },
+  { "label": "English (South Africa)", "code": "en-ZA" },
+  { "label": "English (Tanzania)", "code": "en-TZ" },
+  { "label": "English (United Kingdom)", "code": "en-GB" },
+  { "label": "English (United States)", "code": "en-US" },
+
+  { "label": "Estonian (Estonia)", "code": "et-EE" },
+  { "label": "Filipino (Philippines)", "code": "fil-PH" },
+  { "label": "Finnish (Finland)", "code": "fi-FI" },
+
+  { "label": "French (Belgium)", "code": "fr-BE" },
+  { "label": "French (Canada)", "code": "fr-CA" },
+  { "label": "French (France)", "code": "fr-FR" },
+  { "label": "French (Switzerland)", "code": "fr-CH" },
+
+  { "label": "Galician (Spain)", "code": "gl-ES" },
+  { "label": "Georgian (Georgia)", "code": "ka-GE" },
+
+  { "label": "German (Austria)", "code": "de-AT" },
+  { "label": "German (Germany)", "code": "de-DE" },
+  { "label": "German (Switzerland)", "code": "de-CH" },
+
+  { "label": "Greek (Greece)", "code": "el-GR" },
+  { "label": "Gujarati (India)", "code": "gu-IN" },
+
+  { "label": "Hebrew (Israel)", "code": "iw-IL" },
+  { "label": "Hindi (India)", "code": "hi-IN" },
+
+  { "label": "Hungarian (Hungary)", "code": "hu-HU" },
+  { "label": "Icelandic (Iceland)", "code": "is-IS" },
+  { "label": "Indonesian (Indonesia)", "code": "id-ID" },
+
+  { "label": "Italian (Italy)", "code": "it-IT" },
+  { "label": "Italian (Switzerland)", "code": "it-CH" },
+
+  { "label": "Japanese (Japan)", "code": "ja-JP" },
+  { "label": "Javanese (Indonesia)", "code": "jv-ID" },
+
+  { "label": "Kannada (India)", "code": "kn-IN" },
+  { "label": "Kazakh (Kazakhstan)", "code": "kk-KZ" },
+  { "label": "Khmer (Cambodia)", "code": "km-KH" },
+  { "label": "Kinyarwanda (Rwanda)", "code": "rw-RW" },
+  { "label": "Korean (South Korea)", "code": "ko-KR" },
+
+  { "label": "Lao (Laos)", "code": "lo-LA" },
+  { "label": "Latvian (Latvia)", "code": "lv-LV" },
+  { "label": "Lithuanian (Lithuania)", "code": "lt-LT" },
+
+  { "label": "Macedonian (North Macedonia)", "code": "mk-MK" },
+  { "label": "Malay (Malaysia)", "code": "ms-MY" },
+  { "label": "Malayalam (India)", "code": "ml-IN" },
+  { "label": "Marathi (India)", "code": "mr-IN" },
+  { "label": "Mongolian (Mongolia)", "code": "mn-MN" },
+
+  { "label": "Nepali (Nepal)", "code": "ne-NP" },
+  { "label": "Norwegian Bokmål (Norway)", "code": "nb-NO" },
+
+  { "label": "Persian (Iran)", "code": "fa-IR" },
+  { "label": "Polish (Poland)", "code": "pl-PL" },
+  { "label": "Portuguese (Brazil)", "code": "pt-BR" },
+  { "label": "Portuguese (Portugal)", "code": "pt-PT" },
+
+  { "label": "Punjabi (Gurmukhi, India)", "code": "pa-IN" },
+
+  { "label": "Romanian (Romania)", "code": "ro-RO" },
+  { "label": "Russian (Russia)", "code": "ru-RU" },
+
+  { "label": "Serbian (Serbia)", "code": "sr-RS" },
+  { "label": "Sinhala (Sri Lanka)", "code": "si-LK" },
+  { "label": "Slovak (Slovakia)", "code": "sk-SK" },
+  { "label": "Slovenian (Slovenia)", "code": "sl-SI" },
+
+  { "label": "Spanish (Argentina)", "code": "es-AR" },
+  { "label": "Spanish (Bolivia)", "code": "es-BO" },
+  { "label": "Spanish (Chile)", "code": "es-CL" },
+  { "label": "Spanish (Colombia)", "code": "es-CO" },
+  { "label": "Spanish (Costa Rica)", "code": "es-CR" },
+  { "label": "Spanish (Dominican Republic)", "code": "es-DO" },
+  { "label": "Spanish (Ecuador)", "code": "es-EC" },
+  { "label": "Spanish (El Salvador)", "code": "es-SV" },
+  { "label": "Spanish (Guatemala)", "code": "es-GT" },
+  { "label": "Spanish (Honduras)", "code": "es-HN" },
+  { "label": "Spanish (Mexico)", "code": "es-MX" },
+  { "label": "Spanish (Nicaragua)", "code": "es-NI" },
+  { "label": "Spanish (Panama)", "code": "es-PA" },
+  { "label": "Spanish (Paraguay)", "code": "es-PY" },
+  { "label": "Spanish (Peru)", "code": "es-PE" },
+  { "label": "Spanish (Puerto Rico)", "code": "es-PR" },
+  { "label": "Spanish (Spain)", "code": "es-ES" },
+  { "label": "Spanish (United States)", "code": "es-US" },
+  { "label": "Spanish (Uruguay)", "code": "es-UY" },
+  { "label": "Spanish (Venezuela)", "code": "es-VE" },
+
+  { "label": "Sundanese (Indonesia)", "code": "su-ID" },
+  { "label": "Swahili (Kenya)", "code": "sw-KE" },
+  { "label": "Swahili (Tanzania)", "code": "sw-TZ" },
+  { "label": "Swedish (Sweden)", "code": "sv-SE" },
+
+  { "label": "Tamil (India)", "code": "ta-IN" },
+  { "label": "Tamil (Malaysia)", "code": "ta-MY" },
+  { "label": "Tamil (Singapore)", "code": "ta-SG" },
+  { "label": "Tamil (Sri Lanka)", "code": "ta-LK" },
+
+  { "label": "Telugu (India)", "code": "te-IN" },
+  { "label": "Thai (Thailand)", "code": "th-TH" },
+  { "label": "Turkish (Turkey)", "code": "tr-TR" },
+
+  { "label": "Ukrainian (Ukraine)", "code": "uk-UA" },
+  { "label": "Urdu (India)", "code": "ur-IN" },
+  { "label": "Urdu (Pakistan)", "code": "ur-PK" },
+  { "label": "Uzbek (Uzbekistan)", "code": "uz-UZ" },
+
+  { "label": "Vietnamese (Vietnam)", "code": "vi-VN" },
+  { "label": "Zulu (South Africa)", "code": "zu-ZA" }
+]

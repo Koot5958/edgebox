@@ -1,26 +1,27 @@
 import threading
 import time
 
-import streamlit as st
 from google.cloud import speech
 from google.cloud import translate_v3
 
 from utils.parameters import THREAD_NAMES, REFRESH_TRANSLATE_RATE, SR, STABILITY_MARGIN, TIME_BETWEEN_SENTENCES, STREAMING_LIMIT
-from utils.logs import print_logs
-from web.display import split_text, join_text
+from utils.logs import print_logs, print_logs_threads
+from utils.display import split_text, join_text
 
 
 PROJECT_ID = "formal-wonder-477401-g4"
 
 
 class ThreadManager:
-    def __init__(self, lang_audio, lang_transl, audio_processor):
+    def __init__(self, lang_audio, lang_transl, pc):
+        self.pc = pc
+
         self.transc_client = speech.SpeechClient()
         self.transl_client = translate_v3.TranslationServiceClient()
 
-        self.audio_processor = audio_processor
+        self.audio_processor = pc.processor
 
-        self.thread_stt = threading.Thread(target=self.speech_to_text, name=THREAD_NAMES[0])
+        self.thread_stt = threading.Thread(target=self.speech_to_text, name=THREAD_NAMES[0], daemon=True)
         self.thread_transl = threading.Thread(target=self.translate, name=THREAD_NAMES[1])
 
         self.output_stt, self.output_transl = [], []
@@ -85,6 +86,7 @@ class ThreadManager:
                 speech.StreamingRecognizeRequest(audio_content=content)
                 for content in generator
             )
+
             responses = self.transc_client.streaming_recognize(self.streaming_config, requests)
 
             for response in responses:
@@ -92,7 +94,8 @@ class ThreadManager:
                 # restart session if streaming time limit is exceeded
                 if not self.running or (time.time() - self.start_time) > STREAMING_LIMIT:
                     self.session_just_reloaded = True
-                    print_logs("Stop STT session...")
+                    print_logs("STT session stopped")
+                    print_logs_threads("Threads after STT session stopped")
                     break
 
                 if not response.results or not (result := response.results[0]).alternatives:
@@ -129,6 +132,7 @@ class ThreadManager:
 
                 self.output_stt = self.prefix_stt_output + output
                 self.prev_output_stt = [] if result.is_final else output
+
 
     def translate(self):
         while self.running:
@@ -168,18 +172,12 @@ class ThreadManager:
         self.running = False
         if hasattr(self, "stream") and self.stream is not None:
             self.stream.close()
-    
+
 
 def stop_all_threads():
-    # stop threads
-    if "threads" in st.session_state:
-
-        print_logs("Stopping threads...", log_type="threads")
-        st.session_state.threads.stop()
-
-        # wait for speech/translation threads to finish
-        for t in threading.enumerate():
-            if any(prefix in t.name for prefix in THREAD_NAMES):
-                t.join(timeout=2)
-
-        del st.session_state["threads"]
+    # wait for speech/translation threads to finish
+    for t in threading.enumerate():
+        if any(prefix in t.name for prefix in THREAD_NAMES):
+            t.join(timeout=2)
+            if t.is_alive():
+                print_logs(f"Thread still alive after timeout: {t.name}")

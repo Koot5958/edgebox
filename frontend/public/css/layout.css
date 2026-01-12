@@ -1,0 +1,74 @@
+/* === Container Principal === */
+.voice-container {
+    height: calc(100% - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* === Voice circle === */
+.voice-circle.google-voice {
+    --voice-level: 0;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+}
+
+/* === Configuration Commune des Barres === */
+.voice-circle.google-voice .bar {
+    width: 18px;
+    /* Hauteur de base stable */
+    height: calc(50px + (var(--voice-level) * var(--multiplier) * 110px));
+    
+    border-radius: 30px;
+    transform-origin: center; 
+    backdrop-filter: blur(5px);
+    
+    /* On ajoute un délai de transition pour que la hauteur change de façon décalée */
+    transition: height 0.15s var(--trans-delay) cubic-bezier(0.4, 0, 0.2, 1);
+    
+    animation-name: micro;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+    animation-duration: 0.3s;
+}
+
+/* === Couleurs & Décalages Individuels === */
+
+.bar.blue { 
+    animation-delay: -0.2s;
+    background: linear-gradient(180deg, #D2BBFC, #9763F8);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.bar.yellow { 
+    animation-delay: -0.7s;
+    background: linear-gradient(180deg, #B48FFA, #6F27F5); 
+    box-shadow: 0 0 10px rgba(71, 85, 105, 0.2);
+}
+
+.bar.red { 
+    animation-delay: -0.4s;
+    background: linear-gradient(180deg, #9763F8, #5D0BF4);
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.3);
+}
+
+.bar.green { 
+    animation-delay: -0.1s;
+    background: linear-gradient(180deg, #6F27F5, #4C09C8);
+    box-shadow: 0 0 15px rgba(94, 234, 212, 0.3);
+}
+
+/* === Animation === */
+@keyframes micro {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.8); }
+}
+
+/* === Silence Smoothing === */
+.voice-circle.google-voice.is-silent .bar {
+    animation-duration: 2s !important;
+}

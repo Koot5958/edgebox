@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>EdgeBox-Nova LLM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/theme.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+</head>
+
+<body>
+
+<header class="app-header">
+    <img src="images/logo3.png" width="90px"/>
+    <h1>EdgeBox-Nova LLM</h1>
+    <button class="start-btn" id="start-btn">START</button>
+    <button class="stop-btn" id="stop-btn" disabled>STOP</button>
+    <button class="back-btn" onclick="window.location.href='https://llmcore.ai'">
+        BACK TO WEBSITE
+    </button>
+</header>
+<div class="content-box">
+    <div class="img-container">
+        <h2>Transcription</h2>
+        <div class="select" id="select-audio">
+            <button class="select-trigger" id="select-trigger-audio">Select Language</button>
+            <ul class="select-menu"></ul>
+        </div>
+        
+        <div class="voice-container">
+            <div class="voice-circle google-voice is-silent" id="voice-circle-transc">
+                <span class="bar blue"></span>
+                <span class="bar yellow"></span>
+                <span class="bar red"></span>
+                <span class="bar green"></span>
+            </div>
+        </div>
+
+        <div class="trans-box">
+            <div id="space-line-transc" class="space-line-transc"></div>
+
+            <div class="subt-line">
+                <div class="subt-glass">
+                    <span id="prev-subt-transc"></span>
+                </div>
+            </div>
+
+            <div class="subt-line">
+                <div class="subt-glass">
+                    <span id="curr-subt-transc"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="img-container">
+        <h2>Translation</h2>
+        <div class="select" id="select-transl">
+            <button class="select-trigger" id="select-trigger-transl">Select Language</button>
+            <ul class="select-menu"></ul>
+        </div>
+        
+        
+        <div class="voice-container">
+            <div class="voice-circle google-voice is-silent" id="voice-circle-transl" is-silent>
+                <span class="bar green"></span>
+                <span class="bar red"></span>
+                <span class="bar yellow"></span>
+                <span class="bar blue"></span>
+            </div>
+        </div>
+
+        <div class="trans-box">
+            <div id="space-line-transl" class="space-line-transl"></div>
+
+            <div class="subt-line">
+                <div class="subt-glass">
+                    <span id="prev-subt-transl"></span>
+                </div>
+            </div>
+
+            <div class="subt-line">
+                <div class="subt-glass">
+                    <span id="curr-subt-transl"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="app-footer">
+    <div class="footer-left">
+        <span>© 2026 EdgeBox-Nova</span>
+    </div>
+
+    <div class="footer-center">
+        <span>Real-time Speech · Transcription · Translation</span>
+    </div>
+
+    <div class="footer-right">
+        <a href="https://llmcore.ai" target="_blank">llmcore.ai</a>
+    </div>
+</footer>
+
+<script src="/src/main.js"></script>
+</body>
+</html>
