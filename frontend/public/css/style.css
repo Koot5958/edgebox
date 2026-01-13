@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     padding: 50px;
+    margin-bottom: 50px;
 }
 
 .img-container {
@@ -234,4 +235,64 @@
 /* empêcher l'ouverture */
 .select-trigger:disabled + .select-menu {
     display: none;
+}
+
+
+/* =========================
+   Responsive Content (Mobile)
+   ========================= */
+
+@media (max-width: 768px) {
+
+    /* Conteneur principal */
+    .content-box {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Cartes */
+    .img-container {
+        height: 240px;
+        padding: 16px;
+        margin: 10px;
+    }
+
+    /* Titre */
+    .img-container h2 {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    /* Zone de transcription */
+    .trans-box {
+        max-width: 100%;
+        margin: 12px auto 0 auto;
+
+        position: relative;
+        bottom: 80px;
+
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .subt-glass {
+        max-width: 100%;
+        display: inline-block;
+    }
+
+    .subt-glass span {
+        font-size: 10px;
+        line-height: 1.4;
+    }
+
+    /* Sélecteurs de langue */
+    .select {
+        width: 100%;
+        margin-bottom: 12px;
+    }
+
+    .select-trigger {
+        width: 100%;
+        padding-right: 3em;
+    }
 }

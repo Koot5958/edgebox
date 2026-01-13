@@ -72,3 +72,15 @@
 .voice-circle.google-voice.is-silent .bar {
     animation-duration: 2s !important;
 }
+
+@media (max-width: 768px) {
+
+    .voice-circle.google-voice {
+        height: 100px;
+    }
+
+    .voice-container {
+        height: 100px;
+    }
+
+}
