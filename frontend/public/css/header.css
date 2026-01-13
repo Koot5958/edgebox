@@ -18,9 +18,7 @@
     box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
 }
 
-/* =========================
-   Title
-   ========================= */
+/* Title */
 
 .app-header h1 {
     margin: 0;
@@ -30,9 +28,7 @@
     letter-spacing: -0.02em;
 }
 
-/* =========================
-   Actions (buttons)
-   ========================= */
+/* Buttons */
 
 .app-header button {
     position: relative;
@@ -52,7 +48,6 @@
     z-index: 0;
 }
 
-/* gradients de base */
 .app-header .start-btn {
     background: linear-gradient(90deg, #0885C9, #36B3F7);
 }
@@ -65,7 +60,8 @@
     background: linear-gradient(90deg, #9262F8, #B18EFA);
 }
 
-/* calque animé */
+/* Buttons animations */
+
 .app-header button:not(:disabled)::before {
     content: "";
     position: absolute;
@@ -82,7 +78,6 @@
     z-index: -1;
 }
 
-/* gradients animés */
 .app-header .start-btn:not(:disabled)::before {
     background: linear-gradient(135deg, #36B3F7, #0885C9);
 }
@@ -95,20 +90,19 @@
     background: linear-gradient(135deg, #B18EFA, #9262F8);
 }
 
-/* hover */
 .app-header button:not(:disabled):hover::before,
 .app-header button:not(:disabled):focus-visible::before {
     opacity: 1;
 }
 
-/* animation */
 @keyframes gradientMove {
     0%   { background-position:   0% 50%; }
     50%  { background-position: 100% 50%; }
     100% { background-position:   0% 50%; }
 }
 
-/* disabled */
+/* Buttons disabled */
+
 .app-header button:disabled {
     background: #334155;
     color: #94a3b8;
@@ -117,9 +111,8 @@
     box-shadow: none;
 }
 
-/* =========================
-   Responsive Header (Mobile)
-   ========================= */
+/* Responsive */
+
 @media (max-width: 768px) {
 
     .app-header {
@@ -129,25 +122,21 @@
         gap: 10px;
     }
 
-    /* logo */
     .app-header img {
         width: 60px;
     }
 
-    /* groupe boutons */
     .app-header .start-btn,
     .app-header .stop-btn {
         flex: 1;
         margin-left: 0;
     }
 
-    /* ligne boutons */
     .app-header .start-btn,
     .app-header .stop-btn {
         margin-top: 8px;
     }
 
-    /* masquer le bouton retour */
     .app-header .back-btn,
     .app-header h1 {
         display: none;

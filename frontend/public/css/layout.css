@@ -1,4 +1,7 @@
-/* === Container Principal === */
+/* =========================
+   Bars animation
+   ========================= */
+
 .voice-container {
     height: calc(100% - 80px);
     display: flex;
@@ -6,7 +9,6 @@
     justify-content: center;
 }
 
-/* === Voice circle === */
 .voice-circle.google-voice {
     --voice-level: 0;
     width: 180px;
@@ -16,17 +18,14 @@
     justify-content: space-between;
 }
 
-/* === Configuration Commune des Barres === */
 .voice-circle.google-voice .bar {
     width: 18px;
-    /* Hauteur de base stable */
     height: calc(50px + (var(--voice-level) * var(--multiplier) * 110px));
     
     border-radius: 30px;
     transform-origin: center; 
     backdrop-filter: blur(5px);
     
-    /* On ajoute un délai de transition pour que la hauteur change de façon décalée */
     transition: height 0.15s var(--trans-delay) cubic-bezier(0.4, 0, 0.2, 1);
     
     animation-name: micro;
@@ -35,8 +34,6 @@
 
     animation-duration: 0.3s;
 }
-
-/* === Couleurs & Décalages Individuels === */
 
 .bar.blue { 
     animation-delay: -0.2s;
@@ -62,16 +59,18 @@
     box-shadow: 0 0 15px rgba(94, 234, 212, 0.3);
 }
 
-/* === Animation === */
+/* Animation */
+
 @keyframes micro {
     0%, 100% { transform: scaleY(1); }
     50% { transform: scaleY(0.8); }
 }
 
-/* === Silence Smoothing === */
 .voice-circle.google-voice.is-silent .bar {
     animation-duration: 2s !important;
 }
+
+/* Responsive */
 
 @media (max-width: 768px) {
 

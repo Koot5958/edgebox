@@ -1,4 +1,8 @@
-/* -------- Main container -------- */
+/* =====================
+   Transcription and translation styles
+   ===================== */
+
+/* -------- containers -------- */
 
 .content-box {
     display: flex;
@@ -29,16 +33,12 @@
         inset 0 0 0 1px rgba(148, 163, 184, 0.12);
 }
 
-/* -------- Title -------- */
-
 .img-container h2 {
     color: #e5e7eb;
     font-weight: 600;
     letter-spacing: 0.02em;
     margin-bottom: 12px;
 }
-
-/* -------- Transcription box -------- */
 
 .trans-box {
     max-width: 90%;
@@ -54,7 +54,7 @@
     bottom: 230px;
 }
 
-/* -------- Line spacing -------- */
+/* Subtitle lines */
 
 .space-line-transc,
 .space-line-transl {
@@ -75,14 +75,10 @@
     }
 }
 
-/* -------- Subtitle lines -------- */
-
 .subt-line {
     display: block;
     text-align: left;
 }
-
-/* -------- Glass subtitle -------- */
 
 .subt-glass {
     display: inline-block;
@@ -100,8 +96,6 @@
         inset 0 0 0 1px rgba(255, 255, 255, 0.02);
 }
 
-/* -------- Subtitle text -------- */
-
 .subt-glass span {
     color: #e5e7eb;
     font-size: 16px;
@@ -109,6 +103,8 @@
     letter-spacing: 0.01em;
     line-height: 1.4;
 }
+
+/* Select languages */
 
 .select-trigger {
     background: linear-gradient(90deg, #0885C9, #36B3F7);
@@ -170,7 +166,6 @@
     100% { background-position:   0% 50%; }
 }
 
-/* menu déroulant */
 .select {
     position: relative;
     display: inline-block;
@@ -206,7 +201,6 @@
     z-index: 20;
 }
 
-/* Menu ouvert */
 .select.open .select-menu {
     opacity: 1;
     transform: translateY(0);
@@ -232,38 +226,30 @@
     box-shadow: none;
 }
 
-/* empêcher l'ouverture */
 .select-trigger:disabled + .select-menu {
     display: none;
 }
 
-
-/* =========================
-   Responsive Content (Mobile)
-   ========================= */
+/* Responsive */
 
 @media (max-width: 768px) {
 
-    /* Conteneur principal */
     .content-box {
         flex-direction: column;
         padding: 10px;
     }
 
-    /* Cartes */
     .img-container {
         height: 240px;
         padding: 16px;
         margin: 10px;
     }
 
-    /* Titre */
     .img-container h2 {
         text-align: center;
         font-size: 18px;
     }
 
-    /* Zone de transcription */
     .trans-box {
         max-width: 100%;
         margin: 12px auto 0 auto;
@@ -285,7 +271,6 @@
         line-height: 1.4;
     }
 
-    /* Sélecteurs de langue */
     .select {
         width: 100%;
         margin-bottom: 12px;
