@@ -91,25 +91,20 @@ function updateVoice(level) {
 }
 
 function handleSubtitleFromBackend(msg) {
-    if (msg.transc?.length) {
-        updateSubtitle(
-            "transcription",
-            msg.new_line_transc,
-            msg.prev_transc,
-            msg.transc,
-            msg.animation_duration,
-        );
-    }
-
-    if (msg.transl?.length) {
-        updateSubtitle(
-            "translation",
-            msg.new_line_transl,
-            msg.prev_transl,
-            msg.transl,
-            msg.animation_duration,
-        );
-    }
+    updateSubtitle(
+        "transcription",
+        msg.new_line_transc,
+        msg.prev_transc,
+        msg.transc,
+        msg.animation_duration,
+    );
+    updateSubtitle(
+        "translation",
+        msg.new_line_transl,
+        msg.prev_transl,
+        msg.transl,
+        msg.animation_duration,
+    );
 }
 
 // =====================

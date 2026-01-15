@@ -25,7 +25,7 @@ def format_subt(text, prev_subt):
         new_prev_subt = text[: start_subt]
         new_prev_subt = new_prev_subt[-MAX_LEN :]
         if prev_subt != new_prev_subt:
-            prev_subt = new_prev_subt
             new_line = True
+            prev_subt = new_prev_subt
 
     return new_line, prev_subt, subt
