@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    background: rgba(13, 19, 36, 0.9);
+    background: var(--header-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(42, 145, 204, 0.322);
@@ -24,7 +24,7 @@
     margin: 0;
     font-size: 20px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--header-text);
     letter-spacing: -0.02em;
 }
 
@@ -42,22 +42,30 @@
 
     font-size: 15px;
     font-weight: 600;
-    color: #ffffff;
+    color: var(--header-text);
 
     outline: none;
     z-index: 0;
 }
 
 .app-header .start-btn {
-    background: linear-gradient(90deg, #0885C9, #36B3F7);
+    background: var(--header-start-btn-bg);
 }
 
 .app-header .stop-btn {
-    background: linear-gradient(90deg, #f63b3b, #f87e38);
+    background: var(--header-stop-btn-bg);
 }
 
 .app-header .back-btn {
-    background: linear-gradient(90deg, #9262F8, #B18EFA);
+    background: var(--header-back-btn-bg);
+}
+
+.app-header .theme-btn {
+    background: var(--header-theme-btn-bg);
+    color: var(--header-theme-btn);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /* Buttons animations */
@@ -79,15 +87,19 @@
 }
 
 .app-header .start-btn:not(:disabled)::before {
-    background: linear-gradient(135deg, #36B3F7, #0885C9);
+    background: var(--header-start-btn-bg-before);
 }
 
 .app-header .stop-btn:not(:disabled)::before {
-    background: linear-gradient(135deg, #f87e38, #f63b3b);
+    background: var(--header-stop-btn-bg-before);
 }
 
 .app-header .back-btn:not(:disabled)::before {
-    background: linear-gradient(135deg, #B18EFA, #9262F8);
+    background: var(--header-back-btn-bg-before);
+}
+
+.app-header .theme-btn:not(:disabled)::before {
+    background: var(--header-theme-btn-bg-before);
 }
 
 .app-header button:not(:disabled):hover::before,
@@ -104,9 +116,8 @@
 /* Buttons disabled */
 
 .app-header button:disabled {
-    background: #334155;
-    color: #94a3b8;
-    border: 1px solid #475569;
+    background: var(--header-btn-disabled-bg);
+    color: var(--header-btn-disabled);;
     cursor: not-allowed;
     box-shadow: none;
 }
@@ -140,5 +151,27 @@
     .app-header .back-btn,
     .app-header h1 {
         display: none;
+    }
+
+    .app-header .theme-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        margin-left: auto;
+
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .app-header .theme-btn .theme-text {
+        display: none;
+    }
+
+    .app-header .theme-btn .theme-icon {
+        font-size: 18px;
+        line-height: 1;
     }
 }

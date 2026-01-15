@@ -3,17 +3,87 @@
 ========================= */
 
 :root {
-    --bg-main: #050914;
-    --bg-panel: #0a1022;
-    --bg-glass: rgba(10, 16, 34, 0.72);
-
     --text-main: #e5e7eb;
-    --text-muted: #9ca3af;
 
-    --border-soft: rgba(148, 163, 184, 0.14);
+    --body-bg-0: #0b1224;
+    --body-bg-70: #02040a;
 
-    --radius-lg: 18px;
-    --radius-md: 12px;
+    --img-container-bg-0: #0b1224;
+    --img-container-bg-1: #050914;
+    --img-container-h2: #e5e7eb;
+    --subt-glass-bg: rgba(11, 18, 36, 0.4);
+    --subt-glass-span: #e5e7eb;
+    --select-menu-bg: #0f172a;
+    --select-menu-li: #e6f0ff;
+    --select-menu-li-bg-hover: rgba(56, 178, 248, 0.2);
+    --select-trigger-bg-disabled: #334155;
+    --select-trigger-disabled: #94a3b8;
+    --select-trigger-bg: linear-gradient(90deg, #0885C9, #36B3F7);
+    --select-trigger-bg-before: linear-gradient(90deg, #36B3F7, #0885C9);
+    --select-trigger: #ffffff;
+
+    --header-bg: rgba(13, 19, 36, 0.9);
+    --header-text: #ffffff;
+
+    --header-start-btn-bg: linear-gradient(90deg, #0885C9, #36B3F7);
+    --header-stop-btn-bg: linear-gradient(90deg, #f63b3b, #f87e38);
+    --header-back-btn-bg: linear-gradient(90deg, #9262F8, #B18EFA);
+    --header-theme-btn-bg: linear-gradient(90deg, #fffeec, #c0cff3);
+    --header-theme-btn: #1b1b1b;
+
+    --header-start-btn-bg-before: linear-gradient(90deg, #36B3F7, #0885C9);
+    --header-stop-btn-bg-before: linear-gradient(90deg, #f87e38, #f63b3b);
+    --header-back-btn-bg-before: linear-gradient(90deg, #B18EFA, #9262F8);
+    --header-theme-btn-bg-before: linear-gradient(90deg, #c0cff3, #fffeec);
+
+    --header-btn-disabled-bg: #334155;
+    --header-btn-disabled: #94a3b8;
+
+    --footer-bg: rgba(10, 15, 25, 0.85);
+    --footer-text: rgba(255, 255, 255, 0.65);
+    --footer-border-top: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="light"] {
+    --text-main: #1f2937;
+
+    --body-bg-0: #ffffff;
+    --body-bg-70: #f3f4f6;
+
+    --img-container-bg-0: #ffffff;
+    --img-container-bg-1: #f1f5f9;
+    --img-container-h2: #1f2937;
+    --subt-glass-bg: rgba(255, 255, 255, 0.6);
+    --subt-glass-span: #1f2937;
+    --select-menu-bg: #f8fafc;
+    --select-menu-li: #1e293b;
+    --select-menu-li-bg-hover: rgba(56, 178, 248, 0.15);
+    --select-trigger-bg-disabled: #e5e7eb;
+    --select-trigger-disabled: #9ca3af;
+    --select-trigger-bg: linear-gradient(90deg, #57b6e9, #78d0ff);
+    --select-trigger-bg-before: linear-gradient(90deg, #78d0ff, #57b6e9);
+    --select-trigger: #1f2937;
+
+    --header-bg: rgba(255, 255, 255, 0.85);
+    --header-text: #1f2937;
+
+    --header-start-btn-bg: linear-gradient(90deg, #57b6e9, #78d0ff);
+    --header-stop-btn-bg: linear-gradient(90deg, #ff8080, #ffa978);
+    --header-back-btn-bg: linear-gradient(90deg, #bb9cff, #c6abff);
+    --header-theme-btn-bg: linear-gradient(90deg, #2e2e33, #11356b);
+    --header-theme-btn: #ffffff;
+
+    --header-start-btn-bg-before: linear-gradient(90deg, #78d0ff, #57b6e9);
+    --header-stop-btn-bg-before: linear-gradient(90deg, #ffa978, #ff8080);
+    --header-back-btn-bg-before: linear-gradient(90deg, #c6abff, #bb9cff);
+    --header-theme-btn-bg-before: linear-gradient(90deg, #11356b, #2e2e33);
+
+    --header-btn-disabled-bg: #9ba7b8;
+    --header-btn-disabled: #2a3341;
+
+    --footer-bg: rgba(241, 245, 249, 0.85);
+    --footer-text: rgba(31, 41, 55, 0.7);
+    --footer-border-top: rgba(0, 0, 0, 0.12);
 }
 
 * {
@@ -24,8 +94,8 @@ body {
     margin: 0;
     background: radial-gradient(
         circle at top,
-        #0b1224 0%,
-        #02040a 70%
+        var(--body-bg-0) 0%,
+        var(--body-bg-70) 70%
     );
     color: var(--text-main);
     font-family: Inter, Segoe UI, system-ui, sans-serif;
