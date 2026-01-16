@@ -69,13 +69,13 @@ html[data-theme="light"] {
 
     --header-start-btn-bg: linear-gradient(90deg, #57b6e9, #78d0ff);
     --header-stop-btn-bg: linear-gradient(90deg, #ff8080, #ffa978);
-    --header-back-btn-bg: linear-gradient(90deg, #bb9cff, #c6abff);
+    --header-back-btn-bg: linear-gradient(90deg, #ad88fd, #c6abff);
     --header-theme-btn-bg: linear-gradient(90deg, #2e2e33, #11356b);
     --header-theme-btn: #ffffff;
 
     --header-start-btn-bg-before: linear-gradient(90deg, #78d0ff, #57b6e9);
     --header-stop-btn-bg-before: linear-gradient(90deg, #ffa978, #ff8080);
-    --header-back-btn-bg-before: linear-gradient(90deg, #c6abff, #bb9cff);
+    --header-back-btn-bg-before: linear-gradient(90deg, #c6abff, #ad88fd);
     --header-theme-btn-bg-before: linear-gradient(90deg, #11356b, #2e2e33);
 
     --header-btn-disabled-bg: #9ba7b8;
