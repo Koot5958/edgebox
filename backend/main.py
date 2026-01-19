@@ -1,3 +1,4 @@
+from itertools import count
 import json
 import asyncio
 from aiohttp import web
@@ -9,9 +10,10 @@ from thread_manager import ThreadManager, stop_all_threads
 from utils.display import format_subt, join_text
 from utils.parameters import REFRESH_RATE_FAST, REFRESH_RATE_SLOW, DEFAULT_AUDIO_LANG, DEFAULT_TRANS_LANG
 from utils.lang_list import LANGUAGE_CODES
-from utils.logs import print_logs_threads, print_logs
+from utils.logs import print_logs_threads
 
-pcs = set()
+
+count_pc = 0
 
 
 async def subtitle_loop(pc):
@@ -67,8 +69,6 @@ async def volume_animation_loop(pc):
 # WebRTC offer handler
 # -------------------------
 async def offer(request):
-    print_logs_threads("Threads before initialization")
-
     params = await request.json()
     audio_lang = params.get("audio_lang", DEFAULT_AUDIO_LANG)
     transl_lang = params.get("transl_lang", DEFAULT_TRANS_LANG)
@@ -80,19 +80,21 @@ async def offer(request):
             ]
         )
     )
-    pcs.add(pc)
+    global count_pc
+    count_pc += 1
+    pc_id = count_pc
 
+    print_logs_threads("Threads before initialization", pc_id=f"pc-{pc_id}")
     pc.processor = AudioProcessor()
     pc.thread_manager = ThreadManager(audio_lang, transl_lang, pc)
-    print_logs(f"Languages selected: {pc.thread_manager.lang_audio} to {pc.thread_manager.lang_transl}")
+    print_logs_threads("Threads after initialization", pc_id=f"pc-{pc_id}")
 
     pc.thread_manager.start()
     pc.prev_transc, pc.prev_transl = [], []
     pc.data_channel = None
     pc.running = True
 
-    print_logs_threads("Threads after initialization")
-
+    # tasks that send subtitle and audio volume
     @pc.on("datachannel")
     def on_datachannel(channel):
         pc.data_channel = channel
@@ -102,13 +104,15 @@ async def offer(request):
         if not hasattr(pc, "volume_task") or pc.volume_task is None:
             pc.volume_task = asyncio.create_task(volume_animation_loop(pc))
 
+    # task that receives audio chunks from js
     @pc.on("track")
     def on_track(track):
         if track.kind == "audio":
             pc.audio_task = asyncio.create_task(
                 pc.processor.process_track(track)
             )
-    
+
+    # changes in the connection between the peers
     @pc.on("connectionstatechange")
     async def on_state_change():
         if pc.connectionState in ("failed", "closed", "disconnected"):
@@ -118,7 +122,6 @@ async def offer(request):
 
             pc.subtitle_task.cancel()
             pc.thread_manager.stop()
-            pcs.discard(pc)
 
             stop_all_threads()
 
@@ -138,7 +141,7 @@ async def offer(request):
 # -------------------------
 # App aiohttp
 # -------------------------
-print_logs_threads("Threads before launching app")
+print_logs_threads("Threads before launching app", pc_id="glob")
 app = web.Application()
 
 # API

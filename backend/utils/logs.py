@@ -9,5 +9,5 @@ def print_logs(msg, log_type=None):
     print(log)
 
 
-def print_logs_threads(msg):
-    print_logs(f"{msg}: {[t.name for t in threading.enumerate()]}", log_type="threads")
+def print_logs_threads(msg, pc_id="unk"):
+    print_logs(f"{msg}: {[t.name for t in threading.enumerate()]}", log_type=f"threads-{pc_id}")
