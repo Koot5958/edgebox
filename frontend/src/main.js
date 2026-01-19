@@ -187,10 +187,6 @@ async function start() {
 
     channel = pc.createDataChannel("data");
 
-    channel.onopen = () => {
-        console.log("DataChannel ouvert");
-    };
-
     channel.onmessage = (event) => {
         let msg;
         try {
