@@ -13,6 +13,7 @@ from utils.lang_list import LANGUAGE_CODES
 from utils.logs import print_logs_threads
 
 
+rooms = {}
 count_pc = 0
 
 
@@ -28,21 +29,33 @@ async def subtitle_loop(pc):
             pc.prev_transl
         )
 
-        if pc.data_channel and pc.data_channel.readyState == "open":
-            pc.data_channel.send(
-                json.dumps(
-                    {
-                        "type": "subtitle",
-                        "new_line_transc": new_line_transc,
-                        "prev_transc": join_text(pc.prev_transc, LANGUAGE_CODES[DEFAULT_AUDIO_LANG]),
-                        "transc": join_text(transc, LANGUAGE_CODES[DEFAULT_AUDIO_LANG]),
-                        "new_line_transl": new_line_transl,
-                        "prev_transl": join_text(pc.prev_transl, LANGUAGE_CODES[DEFAULT_TRANS_LANG]),
-                        "transl": join_text(transl, LANGUAGE_CODES[DEFAULT_TRANS_LANG]),
-                        "animation_duration": REFRESH_RATE_SLOW,
-                    }
-                )
-            )
+        room = rooms.get(pc.room_code)
+
+        if room:
+            # Trouver le slot du speaker
+            speaker_slot = None
+            for p in room["participants"]:
+                if p["pc"] == pc:
+                    speaker_slot = p["slot"]
+                    break
+
+            for participant in room["participants"]:
+                target_pc = participant["pc"]
+
+                if target_pc.data_channel and target_pc.data_channel.readyState == "open":
+                    target_pc.data_channel.send(
+                        json.dumps({
+                            "type": "subtitle",
+                            "speaker_slot": speaker_slot,
+                            "new_line_transc": new_line_transc,
+                            "prev_transc": join_text(pc.prev_transc, LANGUAGE_CODES[DEFAULT_AUDIO_LANG]),
+                            "transc": join_text(transc, LANGUAGE_CODES[DEFAULT_AUDIO_LANG]),
+                            "new_line_transl": new_line_transl,
+                            "prev_transl": join_text(pc.prev_transl, LANGUAGE_CODES[DEFAULT_TRANS_LANG]),
+                            "transl": join_text(transl, LANGUAGE_CODES[DEFAULT_TRANS_LANG]),
+                            "animation_duration": REFRESH_RATE_SLOW,
+                        })
+                    )
 
         waiting_time = (
             REFRESH_RATE_SLOW
@@ -70,8 +83,6 @@ async def volume_animation_loop(pc):
 # -------------------------
 async def offer(request):
     params = await request.json()
-    audio_lang = params.get("audio_lang", DEFAULT_AUDIO_LANG)
-    transl_lang = params.get("transl_lang", DEFAULT_TRANS_LANG)
 
     pc = RTCPeerConnection(
         RTCConfiguration(
@@ -84,9 +95,33 @@ async def offer(request):
     count_pc += 1
     pc_id = count_pc
 
+    # room code
+    room_code = params.get("room_code")
+    if room_code not in rooms:
+        rooms[room_code] = {
+            "participants": []
+        }
+    participant = {
+        "pc": pc,
+        "lang": 'fr-FR',
+    }
+    rooms[room_code]["participants"].append(participant)
+    pc.room_code = room_code
+
+    room = rooms[room_code]
+    slot = len(room["participants"])
+    participant = {
+        "pc": pc,
+        "slot": slot
+    }
+
+    room["participants"].append(participant)
+    pc.room_code = room_code
+    pc.slot = slot
+
     print_logs_threads("Threads before initialization", pc_id=f"pc-{pc_id}")
     pc.processor = AudioProcessor()
-    pc.thread_manager = ThreadManager(audio_lang, transl_lang, pc)
+    pc.thread_manager = ThreadManager('fr-FR', 'fr-FR', pc)
     print_logs_threads("Threads after initialization", pc_id=f"pc-{pc_id}")
 
     pc.thread_manager.start()

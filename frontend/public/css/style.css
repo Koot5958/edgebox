@@ -12,6 +12,19 @@
     margin-bottom: 50px;
 }
 
+.content-box-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    margin-bottom: 50px;
+}
+
+.demo-btn {
+    margin: 50px;
+}
+
 .img-container {
     position: relative;
     width: 100%;

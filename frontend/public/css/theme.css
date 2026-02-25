@@ -42,6 +42,9 @@
     --footer-bg: rgba(10, 15, 25, 0.85);
     --footer-text: rgba(255, 255, 255, 0.65);
     --footer-border-top: rgba(255, 255, 255, 0.08);
+
+    --content-box-meeting: #0f1115;
+    --user-box-meeting: #1a1d24;
 }
 
 html[data-theme="light"] {
@@ -84,6 +87,9 @@ html[data-theme="light"] {
     --footer-bg: rgba(241, 245, 249, 0.85);
     --footer-text: rgba(31, 41, 55, 0.7);
     --footer-border-top: rgba(0, 0, 0, 0.12);
+
+    --content-box-meeting: #d9dce0;
+    --user-box-meeting: #b9c3d9;
 }
 
 * {

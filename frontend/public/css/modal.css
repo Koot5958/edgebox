@@ -1,0 +1,225 @@
+/* =========================
+   Modal overlay
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(2, 4, 10, 0.75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+}
+
+/* =========================
+   Modal container
+========================= */
+
+.modal {
+    position: relative;
+    width: 360px;
+    max-width: calc(100% - 32px);
+    padding: 28px;
+
+    background: linear-gradient(
+        135deg,
+        var(--img-container-bg-0),
+        var(--img-container-bg-1)
+    );
+
+    color: var(--text-main);
+
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.16);
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.65),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+    text-align: center;
+    animation: modalPop 0.25s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================
+   Title
+========================= */
+
+.modal h2 {
+    margin: 0 0 18px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--img-container-h2);
+}
+
+.lang-option {
+    margin: 20px;
+}
+
+/* =========================
+   Room options
+========================= */
+
+.room-option {
+    margin-bottom: 18px;
+}
+
+.room-option label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.room-option input {
+    width: 100%;
+    padding: 10px 12px;
+
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+
+    background: var(--subt-glass-bg);
+    color: var(--text-main);
+
+    font-size: 14px;
+    outline: none;
+}
+
+.room-option input::placeholder {
+    color: rgba(148, 163, 184, 0.6);
+}
+
+.room-option input:focus {
+    border-color: rgba(56, 178, 248, 0.6);
+}
+
+/* =========================
+   Buttons (shared style)
+========================= */
+
+.room-option button,
+.generate-btn {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px 16px;
+
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+
+    background: var(--select-trigger-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.room-option button::before,
+.generate-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--select-trigger-bg-before);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.room-option button:hover::before,
+.generate-btn:hover::before {
+    opacity: 1;
+}
+
+.room-option button span,
+.generate-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================
+   Divider
+========================= */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin: 16px 0;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: rgba(148, 163, 184, 0.25);
+}
+
+/* =========================
+   Generated code
+========================= */
+
+#generated-code {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--select-menu-li);
+}
+
+/* =========================
+   Close button
+========================= */
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    font-size: 18px;
+    color: rgba(148, 163, 184, 0.8);
+}
+
+.close-btn:hover {
+    color: var(--text-main);
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 480px) {
+    .modal {
+        padding: 22px;
+    }
+
+    .modal h2 {
+        font-size: 16px;
+    }
+}

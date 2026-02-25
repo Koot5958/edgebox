@@ -1,0 +1,179 @@
+/* =========================================================
+   ZOOM / MEET STYLE – GRID QUI NE DÉBORDE JAMAIS
+   ========================================================= */
+
+.room-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.room-pill {
+    padding: 8px 18px;
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    background: rgba(79, 140, 255, 0.12);
+    color: #4f8cff;
+
+    border: 1px solid rgba(79, 140, 255, 0.3);
+    backdrop-filter: blur(8px);
+
+    box-shadow: 0 4px 12px rgba(79, 140, 255, 0.15);
+}
+
+.room-pill:hover {
+    background: rgba(79, 140, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+/* -------- ZONE PRINCIPALE -------- */
+
+.content-box {
+    flex: 1;
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+
+    width: 100%;
+    height: calc(100vh - 140px); /* header + footer */
+
+    box-sizing: border-box;
+
+    justify-content: center;
+    align-content: center;
+
+    background: var(--content-box-meeting);
+    overflow: hidden;
+}
+
+/* -------- DISPOSITION SELON NOMBRE -------- */
+
+/* 1 caméra */
+.content-box:has(.user-box:nth-child(1):last-child) {
+    grid-template-columns: minmax(420px, 55%);
+}
+
+/* 2 caméras */
+.content-box:has(.user-box:nth-child(2):last-child) {
+    grid-template-columns: repeat(2, minmax(320px, 1fr));
+}
+
+/* 3 caméras → 2 + 1 */
+.content-box:has(.user-box:nth-child(3):last-child) {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+}
+
+/* 4 caméras */
+.content-box:has(.user-box:nth-child(4):last-child) {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+}
+
+/* 5–6 caméras */
+.content-box:has(.user-box:nth-child(5)),
+.content-box:has(.user-box:nth-child(6)) {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+}
+
+/* 7–9 caméras */
+.content-box:has(.user-box:nth-child(7)),
+.content-box:has(.user-box:nth-child(8)),
+.content-box:has(.user-box:nth-child(9)) {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+
+/* -------- CARTE CAMÉRA -------- */
+
+.user-box {
+    width: 100%;
+    height: 100%;
+
+    aspect-ratio: 16 / 9;
+    max-height: 100%;
+
+    background: var(--user-box-meeting);
+    border-radius: 14px;
+    position: relative;
+    overflow: clip;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* -------- SELECT LANG -------- */
+
+.user-box .select {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    z-index: 50;
+}
+
+.select-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    z-index: 100;
+}
+
+/* -------- SOUS-TITRES -------- */
+
+.subt-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 10px;
+
+    padding: 16px;
+    height: 100%;
+}
+
+.space-line-transc {
+    flex: 1;
+}
+
+.subt-line {
+    display: flex;
+    justify-content: center;
+}
+
+.subt-glass {
+    max-width: 92%;
+    padding: 10px 16px;
+
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* -------- TEXTE -------- */
+
+#prev-subt-left { opacity: 0.5; }
+#curr-subt-left { font-weight: 500; }
+#prev-subt-right { opacity: 0.5; }
+#curr-subt-right { font-weight: 500; }
+
+/* -------- MOBILE -------- */
+
+@media (max-width: 768px) {
+    .content-box {
+        height: auto;
+        grid-template-columns: 1fr !important;
+        overflow-y: auto;
+    }
+
+    .user-box {
+        aspect-ratio: 4 / 3;
+    }
+}

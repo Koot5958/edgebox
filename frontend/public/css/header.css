@@ -30,7 +30,8 @@
 
 /* Buttons */
 
-.app-header button {
+.app-header button,
+.demo-btn {
     position: relative;
     overflow: hidden;
 
@@ -48,7 +49,8 @@
     z-index: 0;
 }
 
-.app-header .start-btn {
+.app-header .start-btn,
+.demo-btn {
     background: var(--header-start-btn-bg);
 }
 
@@ -70,7 +72,8 @@
 
 /* Buttons animations */
 
-.app-header button:not(:disabled)::before {
+.app-header button:not(:disabled)::before,
+.demo-btn::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -86,7 +89,8 @@
     z-index: -1;
 }
 
-.app-header .start-btn:not(:disabled)::before {
+.app-header .start-btn:not(:disabled)::before,
+.demo-btn::before {
     background: var(--header-start-btn-bg-before);
 }
 
@@ -103,7 +107,9 @@
 }
 
 .app-header button:not(:disabled):hover::before,
-.app-header button:not(:disabled):focus-visible::before {
+.app-header button:not(:disabled):focus-visible::before,
+.demo-btn:hover::before,
+.demo-btn:focus-visible::before {
     opacity: 1;
 }
 

@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/modal.css" />
+    <link rel="stylesheet" href="/css/select-lang.css" />
 </head>
 
 <body>
@@ -17,8 +19,6 @@
 <header class="app-header">
     <img src="images/logo3.png" width="90px"/>
     <h1>EdgeBox-Nova LLM</h1>
-    <button class="start-btn" id="start-btn">START</button>
-    <button class="stop-btn" id="stop-btn" disabled>STOP</button>
     <button class="back-btn" onclick="window.location.href='https://llmcore.ai/en/edgebox-nova'">
         BACK TO WEBSITE
     </button>
@@ -27,72 +27,13 @@
         <span class="theme-text">Light Mode</span>
     </button>
 </header>
-<div class="content-box">
-    <div class="img-container">
-        <h2>Transcription</h2>
-        <div class="select" id="select-audio">
-            <button class="select-trigger" id="select-trigger-audio">Select Language</button>
-            <ul class="select-menu"></ul>
-        </div>
-        
-        <div class="voice-container">
-            <div class="voice-circle google-voice is-silent" id="voice-circle-transc">
-                <span class="bar blue"></span>
-                <span class="bar yellow"></span>
-                <span class="bar red"></span>
-                <span class="bar green"></span>
-            </div>
-        </div>
-
-        <div class="trans-box">
-            <div id="space-line-transc" class="space-line-transc"></div>
-
-            <div class="subt-line">
-                <div class="subt-glass">
-                    <span id="prev-subt-transc"></span>
-                </div>
-            </div>
-
-            <div class="subt-line">
-                <div class="subt-glass">
-                    <span id="curr-subt-transc"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="img-container">
-        <h2>Translation</h2>
-        <div class="select" id="select-transl">
-            <button class="select-trigger" id="select-trigger-transl">Select Language</button>
-            <ul class="select-menu"></ul>
-        </div>
-        
-        
-        <div class="voice-container">
-            <div class="voice-circle google-voice is-silent" id="voice-circle-transl" is-silent>
-                <span class="bar green"></span>
-                <span class="bar red"></span>
-                <span class="bar yellow"></span>
-                <span class="bar blue"></span>
-            </div>
-        </div>
-
-        <div class="trans-box">
-            <div id="space-line-transl" class="space-line-transl"></div>
-
-            <div class="subt-line">
-                <div class="subt-glass">
-                    <span id="prev-subt-transl"></span>
-                </div>
-            </div>
-
-            <div class="subt-line">
-                <div class="subt-glass">
-                    <span id="curr-subt-transl"></span>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="content-box-page">
+    <button class="demo-btn" onclick="window.location.href='demo-single.html'">
+        Real-time translation (single user demo)
+    </button>
+    <button class="demo-btn" onclick="openModal()">
+        Connect with someone else
+    </button>
 </div>
 
 <footer class="app-footer">
@@ -109,7 +50,40 @@
     </div>
 </footer>
 
-<script src="/src/main.js"></script>
+<script src="/src/lang-select.js"></script>
 <script src="/src/theme-toggle.js"></script>
+<script src="/src/modal.js"></script>
+
+<!-- Modal -->
+<div class="modal-overlay" id="room-modal">
+    <div class="modal">
+        <h2>Connect to a room</h2>
+
+        <div class="lang-option">
+            <div class="select" id="select-audio">
+                <button class="select-trigger" id="select-trigger-audio">Select Your Language</button>
+                <ul class="select-menu"></ul>
+            </div>
+        </div>
+
+        <div class="room-option">
+            <label for="room-code">Enter a room code</label>
+            <input type="text" id="room-code" placeholder="e.g. A7F9Q2" />
+            <button onclick="joinRoom()">Join room</button>
+        </div>
+
+        <div class="divider">OR</div>
+
+        <div class="room-option">
+            <button class="generate-btn" onclick="generateRoom()">
+                Generate a room code
+            </button>
+            <p id="generated-code"></p>
+        </div>
+
+        <button class="close-btn" onclick="closeModal()">✕</button>
+    </div>
+</div>
+
 </body>
 </html>
